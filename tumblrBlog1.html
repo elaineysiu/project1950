@@ -1,0 +1,111 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{Title}</title>
+    {block:Description}
+    <meta name="description" content="{MetaDescription}">
+    <meta name="color:Background" content="#ffffff">
+    <meta name="image:Background" content="">
+    <meta name="image:Header" content="">
+    <meta name="font:Text" content="Helvetica">
+    <meta name="color:Text" content="#333333">
+    <meta name="color:Border" content="#1a1a1a">
+    <meta name="color:Content" content="#ffffff">
+    {/block:Description}
+
+    <style>
+
+
+         #blog{ width:15%;
+                border-right:solid;
+                text-align:left;}
+
+         .audio-post,.video-post{list-style: none;}
+
+         .photo-post img{   border:solid;
+                            border-radius:10%;}
+
+         .link-post a:link{color:blue;}
+         .link-post a:visited{color:purple;}
+         .link-post a:hover{color:red;
+                            text-decoration: blink;}
+         .link-post a:active{color:pink;
+                             text-decoration: blink;}
+
+         .caption{font: smaller;}
+
+
+    </style>
+</head>
+<body>
+
+
+{block:Description}
+<p>{Description}</p>
+{/block:Description}
+
+<div id="blog">
+    {block:Posts}
+
+        {block:Text}
+        <article class="post{PostType}">
+            <h1>{Title}{block:PostTitle}-{PostTitle}{/block:PostTitle}</h1>
+            {body}
+        </article>
+
+        {/block:Text}
+
+        {block:Photo}
+            <div class="photo-post">
+            {LinkOpenTag}
+                <img src="{PhotoURL-250}" alt="{PhotoAlt">
+            {LinkCloseTag}
+
+            {block:Caption}
+                {Caption}
+            {/block:Caption}
+            </div>
+        {/block:Photo}
+
+        {block:Link}
+            <div class="link-post">
+            <a href="{URL}" {Target}>{Name}</a>
+            {block:Description}
+            <div class="description">{Description}</div>
+            {/block:Description}
+            </div>
+        {/block:Link}
+
+        {block:Video}
+            <li class="video-post">
+                {Video-250}
+            {block:Caption}
+            <div class="caption">{Caption}</div>
+            {/block:Caption}
+            </li>
+        {/block:Video}
+
+        {block:Audio}
+            <li class="audio-post">
+            {AudioPlayerBlack}
+            {block:Caption}
+            <div class="caption">{Caption}</div>
+            {/block:Caption}
+            </li>
+        {/block:Audio}
+
+        {block:Date}
+        {block:NewDayDate}
+        {DayOfWeek}, {Month} {DayOfMonth}, {Year}
+        {/block:NewDayDate}
+        Posted <a href="{Permalink}">{TimeAgo}</a>
+        {/block:Date}
+        <br>
+        <hr>
+        <br>
+
+    {/block:Posts}
+</div>
+</body>
+</html>
